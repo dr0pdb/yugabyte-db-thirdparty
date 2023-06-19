@@ -1,0 +1,61 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ffe16fd..59ccb76 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,7 +20,7 @@ project(rhonabwy C)
+ 
+ set(CMAKE_C_STANDARD 99)
+ if (NOT MSVC)
+-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
++    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+ endif()
+ 
+ # library info
+@@ -97,6 +97,9 @@ if (NETTLE_FOUND)
+   set(LIBS ${LIBS} ${NETTLE_LIBRARIES})
+   include_directories(${NETTLE_INCLUDE_DIRS})
+ endif ()
++if (HOGWEED_FOUND)
++  set(LIBS ${LIBS} ${HOGWEED_LIBRARIES})
++endif ()
+ 
+ include(FindGnuTLS)
+ find_package(GnuTLS REQUIRED)
+@@ -226,7 +229,7 @@ if (SEARCH_YDER_R)
+                               QUIET)
+             add_subdirectory(${yder_SOURCE_DIR} ${yder_BINARY_DIR})
+             include_directories(${yder_SOURCE_DIR}/include)
+-            add_dependencies(ulfius yder)
++            add_dependencies(rhonabwy yder)
+             set(YDER_LIBRARIES yder orcania)
+             include_directories(${yder_BINARY_DIR})
+         else ()
+diff --git a/cmake-modules/FindNettle.cmake b/cmake-modules/FindNettle.cmake
+index 6fb924b..7b837df 100644
+--- a/cmake-modules/FindNettle.cmake
++++ b/cmake-modules/FindNettle.cmake
+@@ -40,13 +40,23 @@ find_library(NETTLE_LIBRARY
+         NAMES nettle libnettle
+         HINTS ${PC_NETTLE_LIBDIR} ${PC_NETTLE_LIBRARY_DIRS})
+ 
++find_library(HOGWEED_LIBRARY
++        NAMES hogweed libhogweed
++        HINTS ${PC_HOGWEED_LIBDIR} ${PC_HOGWEED_LIBRARY_DIRS})
++
+ include(FindPackageHandleStandardArgs)
+ find_package_handle_standard_args(Nettle
+         REQUIRED_VARS NETTLE_LIBRARY NETTLE_INCLUDE_DIR)
++find_package_handle_standard_args(Hogweed
++        REQUIRED_VARS HOGWEED_LIBRARY)
+ 
+ if (NETTLE_FOUND)
+     set(NETTLE_LIBRARIES ${NETTLE_LIBRARY})
+     set(NETTLE_INCLUDE_DIRS ${NETTLE_INCLUDE_DIR})
+ endif ()
+ 
+-mark_as_advanced(NETTLE_INCLUDE_DIR NETTLE_LIBRARY)
++if (HOGWEED_FOUND)
++    set(HOGWEED_LIBRARIES ${HOGWEED_LIBRARY})
++endif ()
++
++mark_as_advanced(NETTLE_INCLUDE_DIR NETTLE_LIBRARY HOGWEED_LIBRARY)

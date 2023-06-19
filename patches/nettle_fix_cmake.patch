@@ -1,0 +1,43 @@
+diff --git a/ecc.h b/ecc.h
+index 93fc9e87..9d04f28a 100644
+--- a/ecc.h
++++ b/ecc.h
+@@ -42,22 +42,22 @@ extern "C" {
+ #endif
+ 
+ /* Name mangling */
+-#define ecc_point_init nettle_ecc_point_init
+-#define ecc_point_clear nettle_ecc_point_clear
+-#define ecc_point_set nettle_ecc_point_set
+-#define ecc_point_get nettle_ecc_point_get
+-#define ecc_point_mul nettle_ecc_point_mul
+-#define ecc_point_mul_g nettle_ecc_point_mul_g
+-#define ecc_scalar_init nettle_ecc_scalar_init
+-#define ecc_scalar_clear nettle_ecc_scalar_clear
+-#define ecc_scalar_set nettle_ecc_scalar_set
+-#define ecc_scalar_get nettle_ecc_scalar_get
+-#define ecc_scalar_random nettle_ecc_scalar_random
+-#define ecc_point_mul nettle_ecc_point_mul
+-#define ecc_bit_size nettle_ecc_bit_size
+-#define ecc_size nettle_ecc_size
+-#define ecc_size_a nettle_ecc_size_a
+-#define ecc_size_j nettle_ecc_size_j
++// #define ecc_point_init nettle_ecc_point_init
++// #define ecc_point_clear nettle_ecc_point_clear
++// #define ecc_point_set nettle_ecc_point_set
++// #define ecc_point_get nettle_ecc_point_get
++// #define ecc_point_mul nettle_ecc_point_mul
++// #define ecc_point_mul_g nettle_ecc_point_mul_g
++// #define ecc_scalar_init nettle_ecc_scalar_init
++// #define ecc_scalar_clear nettle_ecc_scalar_clear
++// #define ecc_scalar_set nettle_ecc_scalar_set
++// #define ecc_scalar_get nettle_ecc_scalar_get
++// #define ecc_scalar_random nettle_ecc_scalar_random
++// #define ecc_point_mul nettle_ecc_point_mul
++// #define ecc_bit_size nettle_ecc_bit_size
++// #define ecc_size nettle_ecc_size
++// #define ecc_size_a nettle_ecc_size_a
++// #define ecc_size_j nettle_ecc_size_j
+ 
+ struct ecc_curve;
+ 

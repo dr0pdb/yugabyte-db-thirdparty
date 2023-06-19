@@ -315,6 +315,14 @@ class Builder(BuilderInterface):
             'openldap',
             'redis_cli',
             'wyhash',
+            'yder',
+            'libmicrohttpd',
+            'nettle',
+            'gnutls',
+            'jansson',
+            'ulfius',
+            'rhonabwy',
+            'iddawc',
         ])
         for dep in self.dependencies:
             if dep.build_group != BUILD_GROUP_COMMON:
@@ -381,8 +389,8 @@ class Builder(BuilderInterface):
                 'cassandra_cpp_driver',
                 'krb5',
                 'hdrhistogram',
-                'otel_proto',
-                'otel'
+                # 'otel_proto',
+                # 'otel'
             ])
 
     def select_dependencies_to_build(self) -> None:
@@ -1173,6 +1181,7 @@ class Builder(BuilderInterface):
             cppflags_list = []
 
         log_and_set_env_var_to_list(env_vars, 'CPPFLAGS', cppflags_list)
+        log_and_set_env_var_to_list(env_vars,'PKG_CONFIG_PATH', ['/Users/stiwary/code/yugabyte-db-thirdparty/build/common/nettle-3.9.1'])
 
         log_and_set_env_var_to_list(
             env_vars,
